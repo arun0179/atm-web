@@ -4,9 +4,9 @@
       xmlns:th="https://www.thymeleaf.org">
 
 <div class="container" layout:fragment="content">
-    <h1>Edit Bank Account</h1>
+    <h1 style="color: #123863; padding-top: 30px">Deposit</h1>
     <form
-            th:action="@{/bankaccount/edit/{id} (id=${bankAccount.id})}"
+            th:action="@{/bankaccount/deposit/{id} (id=${bankAccount.id})}"
             th:object="${bankAccount}"
             method="POST">
 
@@ -27,13 +27,19 @@
 
         <div class="form-group">
             <label for="inputBalance">Balance</label>
-            <input type="text" th:field="*{balance}" class="form-control" id="inputBalance">
+            <input disabled type="text" th:field="*{balance}" class="form-control" id="inputBalance">
+        </div>
+
+        <h4 th:text="${alert}"></h4>
+
+        <div class="form-group m-3">
+            <label for="inputMoney">Amount</label>
+            <input type="input" name="amount" id="inputMoney" class="form-control">
         </div>
 
 
-
-        <div class="form-group">
-            <input type="submit" class="btn btn-danger">
+        <div class="form-group d-flex justify-content-center">
+            <input type="submit" class="btn btn-outline-success">
         </div>
 
     </form>

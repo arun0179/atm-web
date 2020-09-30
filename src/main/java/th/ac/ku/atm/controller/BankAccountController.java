@@ -39,9 +39,6 @@ public class BankAccountController {
     public String editAccount(@PathVariable int id,
                               @ModelAttribute BankAccount bankAccount,
                               Model model) {
-
-        bankAccountService.editBankAccount(bankAccount);
-        model.addAttribute("bankaccounts",bankAccountService.getBankAccounts());
         return "redirect:/bankaccount";
     }
 
@@ -58,6 +55,54 @@ public class BankAccountController {
                               Model model) {
 
         bankAccountService.deleteBankAccount(bankAccount);
+        model.addAttribute("bankaccounts",bankAccountService.getBankAccounts());
+        return "redirect:/bankaccount";
+    }
+
+    @GetMapping("/withdraw/{id}")
+    public String getWithdrawPage(@PathVariable int id, Model model){
+        BankAccount account = bankAccountService.getBankAccount(id);
+        model.addAttribute("bankAccount", account);
+        return "bankaccount-withdraw";
+    }
+
+    @PostMapping("/withdraw/{id}")
+    public String withdraw(@PathVariable int id,
+                           @ModelAttribute BankAccount bankAccount,
+                           Model model) {
+        BankAccount bankAccount1 = bankAccountService.getBankAccount(id);
+
+        double checkWithdraw= bankAccount1.getBalance()-bankAccount.getAmount();
+
+        if(checkWithdraw>=0){
+            bankAccount.setBalance(checkWithdraw);
+            bankAccountService.editBankAccount(bankAccount);
+            model.addAttribute("bankaccounts",bankAccountService.getBankAccounts());
+            return "redirect:/bankaccount";
+        }
+        else {
+                bankAccountService.editBankAccount(bankAccount1);
+                model.addAttribute("bankAccount", bankAccount1);
+            model.addAttribute("alert", "Withdraw amount exceed your balance.");
+            return "bankaccount-withdraw";
+        }
+    }
+
+    @GetMapping("/deposit/{id}")
+    public String getDepositPage(@PathVariable int id, Model model){
+        BankAccount account = bankAccountService.getBankAccount(id);
+        model.addAttribute("bankAccount", account);
+        return "bankaccount-deposit";
+    }
+
+    @PostMapping("/deposit/{id}")
+    public String deposit(@PathVariable int id,
+                           @ModelAttribute BankAccount bankAccount,
+                           Model model) {
+        BankAccount bankAccount1 = bankAccountService.getBankAccount(id);
+        double sum = bankAccount1.getBalance()+bankAccount.getAmount();
+        bankAccount.setBalance(sum);
+        bankAccountService.editBankAccount(bankAccount);
         model.addAttribute("bankaccounts",bankAccountService.getBankAccounts());
         return "redirect:/bankaccount";
     }

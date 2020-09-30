@@ -4,7 +4,10 @@
       xmlns:th="https://www.thymeleaf.org">
 
 <div class="container" layout:fragment="content">
-    <h1>Delete Bank Account</h1>
+    <h1 style="color: maroon; padding-top: 30px">Delete Bank Account</h1>
+
+    <hr>
+
     <form
             th:action="@{/bankaccount/delete/{id} (id=${bankAccount.id})}"
             th:object="${bankAccount}"
@@ -30,7 +33,9 @@
             <input disabled type="text" th:field="*{balance}" class="form-control" id="inputBalance">
         </div>
 
-        <div class="form-group">
+        <hr>
+
+        <div class="form-group d-flex justify-content-center">
             <input type="submit" class="btn btn-danger">
         </div>
 
