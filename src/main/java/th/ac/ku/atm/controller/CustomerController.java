@@ -35,29 +35,5 @@ public class CustomerController {
         return "redirect:customer";
     }
 
-//    ArrayList<Customer> customers = new ArrayList<>();
-//    @GetMapping("/customer")
-//    @RequestMapping("/customer")
-//    public String getCustomerPage(Model model) {
-//        ArrayList<String> customers = new ArrayList<>();
-//        customers.add("Wendy");
-//        customers.add("Brent");
-//        customers.add("Irene");
-        //object
-//        List<Customer> customers = new ArrayList<>();
-//        customers.add(new Customer(1,"Wendy",1234));
-//        customers.add(new Customer(2,"Brent",2345));
-//        customers.add(new Customer(3,"Irene",3456));
-//        model.addAttribute("allCustomers", customers);
-//        //return customer.html
-//        return "customer";
-//    }
-//    @PostMapping("/customer")
-//    public String registerCustomer(@ModelAttribute Customer customer, Model model){
-//        customers.add(customer);
-//        model.addAttribute("allCustomers", customers);
-//        return "redirect:customer";
-//    }
-
 
 }

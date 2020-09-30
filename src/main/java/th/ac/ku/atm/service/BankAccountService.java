@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 public class BankAccountService {
 
-//    private List<BankAccount> bankAccounts;
     private RestTemplate restTemplate;
 
     public BankAccountService (RestTemplate restTemplate){
@@ -58,6 +57,11 @@ public class BankAccountService {
     public void editBankAccount(BankAccount bankAccount) {
         String url = "http://localhost:8091/api/bankaccount/" + bankAccount.getId();
         restTemplate.put(url, bankAccount);
+    }
+
+    public void deleteBankAccount(BankAccount bankAccount) {
+        String url = "http://localhost:8091/api/bankaccount/" + bankAccount.getId();
+        restTemplate.delete(url, bankAccount);
     }
 
 }
