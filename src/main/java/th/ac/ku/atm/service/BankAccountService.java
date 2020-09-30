@@ -46,17 +46,18 @@ public class BankAccountService {
         restTemplate.postForObject(url, bankAccount, BankAccount.class);
     }
 
-//    @PostConstruct
-//    public void postConstruct(){
-//        this.bankAccounts = new ArrayList<>();
-//    }
+    public BankAccount getBankAccount(int id) {
+        String url = "http://localhost:8091/api/bankaccount/" + id;
 
-//    public void createBankAccount(BankAccount bankAccount){
-//        bankAccounts.add(bankAccount);
-//    }
+        ResponseEntity<BankAccount> response =
+                restTemplate.getForEntity(url, BankAccount.class);
 
-//    public List<BankAccount> getBankAccounts(){
-//        return new ArrayList<>(this.bankAccounts);
-//    }
+        return response.getBody();
+    }
+
+    public void editBankAccount(BankAccount bankAccount) {
+        String url = "http://localhost:8091/api/bankaccount/" + bankAccount.getId();
+        restTemplate.put(url, bankAccount);
+    }
 
 }
