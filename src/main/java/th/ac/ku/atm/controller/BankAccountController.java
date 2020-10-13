@@ -39,6 +39,7 @@ public class BankAccountController {
     public String editAccount(@PathVariable int id,
                               @ModelAttribute BankAccount bankAccount,
                               Model model) {
+        bankAccountService.editBankAccount(bankAccount);
         return "redirect:/bankaccount";
     }
 
